@@ -1,0 +1,29 @@
+﻿customer: mcc
+vertical: EmployeeManagement
+
+# The dockefile below in section services is a
+# multistage dockerfile for creating the runtime image
+multistage: true
+  
+services:
+- id: EmployeeManagement
+  type: dockerfile
+  check: true
+  resources:
+    requests:
+      memory: "100Mi"
+      cpu: "10m"
+    limits:
+      memory: "150Mi"
+      cpu: "150m"
+
+tests:
+- stage: dev
+  type: dockerfile
+  filename: testDockerfile-dev
+  
+#beforestep:
+ # type: dockerfile
+       
+watchers: 
+  - msikka93@gmail.com

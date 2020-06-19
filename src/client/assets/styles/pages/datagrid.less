@@ -1,0 +1,129 @@
+/*
+ * =============================================================================
+ *   <React Data Grid Style Overrides>
+ * =============================================================================
+ *
+*/
+
+@table-border-color: #e6e8eb;
+@table-header-border-bottom-color: #002d72;
+
+
+.react-grid-Main {
+  outline: none !important; /* Removed outline */
+}
+.react-grid-Grid {
+  border: none !important; /* Removed border */
+  background-color: #ffffff;
+  box-shadow: 0 1px 2px 0 rgba(128, 128, 128, 0.2);
+  border-radius: 3px;
+}
+
+.react-grid-Header {
+  background: #fff !important; /* Set background white*/
+  border-bottom: 2px solid @table-header-border-bottom-color !important; /* To apply border bottom for each Header row*/
+}
+
+// .react-grid-HeaderRow {
+//   background: #fff !important; /* Set row background as white color. */
+//   border-top-left-radius: 4px;
+//   border-top-right-radius: 4px;
+//   border-bottom: 1px solid #ddd !important; /* To apply border bottom for each Header row*/
+// }
+.react-grid-HeaderCell {
+  background:#fff !important; /* Set cell background white */
+  color: #002d72 !important; /* Set font color as blue */ 
+  border-right: none!important; /* Remove column seperation borders. Keep only row bottom borders*/
+  border-bottom: 2px solid @table-header-border-bottom-color !important; 
+
+  // &:last-child {
+  //   border-right: none !important;
+  // }
+}
+// .react-grid-HeaderCell-sortable{
+//   color: @brand-blue-variant3 !important; /* Set font color as blue */
+
+//   span {
+//     float: none !important;
+//   }
+// }
+.react-grid-Cell {
+  // background-color: transparent;
+  // padding-left: 8px;
+  // padding-right: 8px;
+  border-right: none !important; /* Remove column seperation borders. Keep only row bottom borders*/
+  border-bottom: none!important;
+
+  // &:last-child {
+  //   border-right: none !important;
+  // }
+}
+
+// .react-grid-Row {
+//   border-bottom: 1px solid #ddd !important; /* To apply border bottom for each row*/
+// }
+
+.react-grid-Row--even {
+  background-color: #F2F5F8;
+}
+
+.react-grid-Row--even .react-grid-Cell {
+  background-color: transparent;
+}
+
+.react-grid-Row--odd .react-grid-Cell {
+  background-color: transparent;
+}
+
+.react-grid-Row-isExpired 
+{
+  .react-grid-Row--even {
+    background-color: #f8d7d1;
+    color: #de351b;
+    // background-image: repeating-linear-gradient(40deg, rgba(230, 232, 235, 0.5) 0, rgba(230, 232, 235, 0.5) 2px, rgba(230, 232, 235, 0) 2px, rgba(230, 232, 235, 0) 10px);
+  }
+  .react-grid-Row--odd {
+    background-color: #f8d7d1;
+    color: #de351b;
+    // background-image: repeating-linear-gradient(40deg, rgba(230, 232, 235, 0.5) 0, rgba(230, 232, 235, 0.5) 2px, rgba(230, 232, 235, 0) 2px, rgba(230, 232, 235, 0) 10px);
+  }
+}
+// .react-grid-Row--odd {
+//   background-color: #fff!important;
+// }
+
+// .react-grid-Row--odd .react-grid-Cell {
+//   background-color: #fff!important;
+// }
+.react-grid-Row:hover .react-grid-Cell, .react-grid-Row.row-context-menu .react-grid-Cell {
+    background-color: transparent!important;
+}
+// .drag-handle {
+//   display: none !important;
+// }
+.react-grid-HeaderCell>.react-grid-checkbox-container {
+  display: none;
+}
+
+.rdg-selected {
+  /* border: 2px solid #66afe9; */
+  border: none!important;
+}
+
+.react-grid-Row.row-selected {
+  background-color: #cce0ff!important;
+}
+.react-grid-Row.row-selected .react-grid-Cell {
+  background-color: #cce0ff!important;
+}
+.UNSAFE-secondardy-row {
+  font-size: 14px;
+}
+
+.bg-for-edit-price {
+  background-color: rgba(242, 234, 255, 0.34);
+}
+
+.text-for-basketdiscount {
+  color: #af3375;
+}
