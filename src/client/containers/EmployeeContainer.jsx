@@ -9,6 +9,7 @@ import {
 import { openPopup } from 'react-redux-popup'
 import {
   getEmployees,
+  getEmployeeSalary,
   getLoading,
   getError,
   getemployeesLastEditedAt
@@ -19,6 +20,7 @@ import { Typography } from '@material-ui/core'
 export const mapStateToProps = (state: State) => {
   return {
     employees: getEmployees(state),
+    employeeSalary: getEmployeeSalary(state),
     isLoading: getLoading(state),
     hasError: getError(state),
     employeesLastEditedAt: getemployeesLastEditedAt(state)

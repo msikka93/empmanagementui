@@ -31,7 +31,7 @@ module.exports = {
 
   // keep node_module paths out of the bundle
   externals: fs.readdirSync(path.resolve(__dirname, 'node_modules'))
-    .filter(moduleName => moduleName !== 'react-redux-popup')
+    .filter(moduleName => moduleName !== 'react-redux-popup' && moduleName !== 'react-redux-snackbar')
     .concat([
       'react-dom/server', 'react/addons'
     ]).reduce(function (ext, mod) {

@@ -5,6 +5,8 @@
 // purpose is to group all other components in the page together
 import React from 'react'
 import EmployeesGrid from './EmployeesGrid'
+import Average from './Average'
+import Total from './Total'
 import Divider from '@material-ui/core/Divider'
 import Button from '@material-ui/core/Button'
 import type { EmployeeListType } from '../../flow-types/employeesTypes'
@@ -18,6 +20,7 @@ type Props = {
   handleDeleteEmployee: () => void,
   handleCreateEmployee: () => void,
   employees: EmployeeListType,
+  employeeSalary: EmployeeListType,
   isLoading: boolean,
   hasError: boolean,
   employeesLastEditedAt: number
@@ -31,6 +34,7 @@ export default function EmployeesLayout ({
   handleEditEmployee,
   handleCreateEmployee,
   employees,
+  employeeSalary,
   isLoading,
   hasError,
   employeesLastEditedAt
@@ -42,6 +46,12 @@ export default function EmployeesLayout ({
     <div style={{ margin: '4rem 0 0 0' }}>
       <div style={{ display: 'flex' }}>
         <Typography variant='h5'>Employees</Typography>
+        <div style={{ marginLeft: 'auto' }}>
+          <Average employeeSalary={employeeSalary} />
+        </div>
+        <div style={{ marginLeft: 'auto' }}>
+          <Total employeeSalary={employeeSalary} />
+        </div>
         <Button
           style={{ marginLeft: 'auto' }}
           variant='contained'
@@ -51,7 +61,9 @@ export default function EmployeesLayout ({
           Create
         </Button>
       </div>
-      <Divider />
+      <div style={{ marginTop: '15px' }}>
+        <Divider />
+      </div>
       <br />
       <EmployeeGridWithLoading
         employees={employees}

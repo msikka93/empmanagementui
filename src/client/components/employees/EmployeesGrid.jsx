@@ -27,7 +27,7 @@ export const sortRows = (
 
 export const NoDataView = () => (
   <center>
-    <div style={{ marginTop: '8rem' }}>
+    <div style={{ marginTop: '10rem' }}>
       <CircularProgress size={80} thickness={6.12} />
     </div>
   </center>
@@ -116,7 +116,6 @@ export default function EmployeesGrid ({
   handleEditEmployee,
   handleDeleteEmployee
 }: Props) {
-  console.log('gaurav', employees)
   if (!__CLIENT__) return null
   if (!employees.length) {
     return <NoDataView />
@@ -148,7 +147,7 @@ export default function EmployeesGrid ({
         )}
         rowGetter={i => rows[i]}
         rowsCount={rows.length}
-        minHeight={500}
+        minHeight={480}
         rowHeight={40}
         onGridSort={(sortColumn, sortDirection) =>
           setRows(sortRows(employees, sortColumn, sortDirection))}

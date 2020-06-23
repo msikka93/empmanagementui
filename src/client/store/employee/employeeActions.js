@@ -30,7 +30,15 @@ export function fetchEmployees () {
       method: 'GET'
     })
       .then(response => {
-        dispatch(receiveEmployeeList(response.responseJSON.data))
+        var data = response.responseJSON.data
+        if (Array.isArray(data)) {
+          dispatch(receiveEmployeeList(data))
+        } else {
+          var myData = Object.keys(data).map(key => {
+            return data[key]
+          })
+          dispatch(receiveEmployeeList(myData))
+        }
       })
       .catch(err => {
         dispatch(receiveError(err))
@@ -74,10 +82,9 @@ export function updateEmployeeByEmployeeId (data: string) {
         dispatch(closePopup())
         dispatch(receiveEmployee(data))
         dispatch(
-          showSnack('success', {
-            label: 'Employee Details Saved Successfully.',
-            timeout: 7000,
-            button: { label: 'OK, GOT IT' }
+          showSnack({
+            type: 'success',
+            message: 'Employee Details Updated Successfully.'
           })
         )
       })
@@ -85,18 +92,19 @@ export function updateEmployeeByEmployeeId (data: string) {
         dispatch(closePopup())
         if (err.status === 401) {
           dispatch(
-            showSnack('error', {
-              label: 'You are not authorized to update this record',
-              timeout: 7000
+            showSnack({
+              type: 'error',
+              message: 'You are not authorized to update this record'
+            })
+          )
+        } else {
+          dispatch(
+            showSnack({
+              type: 'error',
+              message: 'Something went wrong while saving employee details.'
             })
           )
         }
-        dispatch(
-          showSnack('error', {
-            label: 'Something went wrong while saving employee details.',
-            timeout: 7000
-          })
-        )
         console.log(err)
       })
   }
@@ -115,18 +123,17 @@ export function handleDeleteEmployee (data: string) {
         dispatch(employeeRemoved(data))
         dispatch(fetchEmployees())
         dispatch(
-          showSnack('success', {
-            label: 'Employee Record Deleted Successfully.',
-            timeout: 7000,
-            button: { label: 'OK, GOT IT' }
+          showSnack({
+            type: 'success',
+            message: 'Employee Removed Successfully.'
           })
         )
       })
       .catch(err => {
         dispatch(
-          showSnack('error', {
-            label: 'Something went wrong while removing employee details.',
-            timeout: 7000
+          showSnack({
+            type: 'error',
+            message: 'Something went wrong while removing employee details.'
           })
         )
         console.log(err)
@@ -155,19 +162,18 @@ export function createEmployee (employeeDetails: {}) {
         dispatch(receiveEmployee(response.responseJSON.data))
         dispatch(fetchEmployees())
         dispatch(
-          showSnack('success', {
-            label: 'Employee created Saved Successfully.',
-            timeout: 7000,
-            button: { label: 'OK, GOT IT' }
+          showSnack({
+            type: 'success',
+            message: 'Employee created Successfully.'
           })
         )
       })
       .catch(err => {
         dispatch(closePopup())
         dispatch(
-          showSnack('error', {
-            label: 'Something went wrong while creating employee.',
-            timeout: 7000
+          showSnack({
+            type: 'error',
+            message: 'Something went wrong while creating employee.'
           })
         )
         console.log(err)
