@@ -1,4 +1,3 @@
-// @flow strict
 import express from 'express'
 import beaverCustomerLogger from '../helpers/logger'
 

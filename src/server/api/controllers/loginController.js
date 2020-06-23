@@ -1,6 +1,5 @@
 // Declare browser globals for StandardJS
 /* global Req, Res, Next */
-// @flow strict
 import { logger } from '../../helpers/logger'
 
 export async function logout (req: Req, res: Res, next: Next) {

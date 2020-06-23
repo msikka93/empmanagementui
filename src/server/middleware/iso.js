@@ -1,6 +1,5 @@
 // Declare browser globals for StandardJS
 /* global Req, Res */
-// @flow strict
 // isomorphic rendering implementation
 
 // import stuff for react server side rendering

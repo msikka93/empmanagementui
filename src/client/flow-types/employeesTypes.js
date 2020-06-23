@@ -10,9 +10,12 @@ export type EmployeeType = {
 
 export type EmployeeListType = Array<EmployeeType>
 
-export type EmployeesStateType = {|
-  +employees: EmployeeListType
-|}
+export type EmployeesStateType = {
+  +employees: EmployeeListType,
+  +employeesLastEditedAt: number | null,
+  +isLoading: boolean,
+  +hasError: boolean
+}
 
 export type EmployeesState = {
   +employees: EmployeesStateType

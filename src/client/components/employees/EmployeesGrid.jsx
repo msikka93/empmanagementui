@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import type { EmployeeListType } from '../../flow-types/employeesTypes'
 import ViewFormatter from './ViewFormatter'
 import CircularProgress from '@material-ui/core/CircularProgress'
@@ -35,7 +35,8 @@ export const NoDataView = () => (
 
 export const getColumns = (
   handleViewEmployee: string => void,
-  handleEditEmployee: string => void
+  handleEditEmployee: string => void,
+  handleDeleteEmployee: string => void
 ) => {
   return [
     {
@@ -83,6 +84,19 @@ export const getColumns = (
           handleClick={handleEditEmployee}
         />
       )
+    },
+    {
+      key: 'delete',
+      name: 'Delete',
+      width: 80,
+      // $FlowFixMe
+      formatter: ({ row }) => (
+        <ViewFormatter
+          type='delete'
+          value={row}
+          handleClick={handleDeleteEmployee}
+        />
+      )
     }
   ]
 }
@@ -90,27 +104,48 @@ export const getColumns = (
 type Props = {
   employees: EmployeeListType,
   handleViewEmployee: (id: string) => void,
-  handleEditEmployee: (id: string) => void
+  handleEditEmployee: (id: string) => void,
+  handleDeleteEmployee: (id: string) => void,
+  employeesLastEditedAt: number
 }
 
 export default function EmployeesGrid ({
   employees,
+  employeesLastEditedAt,
   handleViewEmployee,
-  handleEditEmployee
+  handleEditEmployee,
+  handleDeleteEmployee
 }: Props) {
+  console.log('gaurav', employees)
   if (!__CLIENT__) return null
-  if (!employees.length) return <NoDataView />
+  if (!employees.length) {
+    return <NoDataView />
+  }
   const [rows, setRows] = useState(employees)
-
+  const inputEl = useRef(null)
   // if the list has been edited, state update is required
   useEffect(() => {
     setRows(employees)
-  }, [])
-
+  }, [employeesLastEditedAt])
+  useEffect(() => {
+    const idx = employees.length && employees.length - 1
+    if (idx) {
+      const top = inputEl.current.getRowOffsetHeight() * idx
+      const gridCanvas = inputEl.current
+        .getDataGridDOMNode()
+        .querySelector('.react-grid-Canvas')
+      gridCanvas.scrollTop = top
+    }
+  }, [employees.length])
   return (
     <div id='dg-checkout-items'>
       <ReactDataGrid
-        columns={getColumns(handleViewEmployee, handleEditEmployee)}
+        ref={inputEl}
+        columns={getColumns(
+          handleViewEmployee,
+          handleEditEmployee,
+          handleDeleteEmployee
+        )}
         rowGetter={i => rows[i]}
         rowsCount={rows.length}
         minHeight={500}
