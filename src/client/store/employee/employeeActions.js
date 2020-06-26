@@ -8,12 +8,12 @@ export const receiveEmployeeList = payload => ({
   payload
 })
 
-function employeeRemoved (data) {
-  return {
-    type: types.EMPLOYEE_REMOVED,
-    payload: data
-  }
-}
+// function employeeRemoved (data) {
+//   return {
+//     type: types.EMPLOYEE_REMOVED,
+//     payload: data
+//   }
+// }
 
 export const receiveError = () => ({
   type: types.EMPLOYEES_ERROR
@@ -120,14 +120,23 @@ export function handleDeleteEmployee (data: string) {
       method: 'DELETE'
     })
       .then(response => {
-        dispatch(employeeRemoved(data))
-        dispatch(fetchEmployees())
-        dispatch(
-          showSnack({
-            type: 'success',
-            message: 'Employee Removed Successfully.'
-          })
-        )
+        if (response.responseJSON.status !== 'failed') {
+          // dispatch(employeeRemoved(data))
+          dispatch(fetchEmployees())
+          dispatch(
+            showSnack({
+              type: 'success',
+              message: 'Employee Removed Successfully.'
+            })
+          )
+        } else {
+          dispatch(
+            showSnack({
+              type: 'error',
+              message: 'Something went wrong while removing employee details.'
+            })
+          )
+        }
       })
       .catch(err => {
         dispatch(
