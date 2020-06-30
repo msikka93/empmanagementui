@@ -4,7 +4,7 @@ import Popover from '@material-ui/core/Popover'
 import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
 import Chip from '@material-ui/core/Chip'
-import FaceIcon from '@material-ui/icons/Face'
+import EuroIcon from '@material-ui/icons/Euro'
 import type { EmployeeListType } from '../../flow-types/employeesTypes'
 
 type Props = {
@@ -68,7 +68,7 @@ export default function Total ({ employeeSalary }: Props) {
         <div style={{ margin: '1px' }}>
           <Chip
             color='secondary'
-            icon={<FaceIcon />}
+            icon={<EuroIcon />}
             label={
               <Typography className={classes.typography}>
                 {empTotalSalary}
