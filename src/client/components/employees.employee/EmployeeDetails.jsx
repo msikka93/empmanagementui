@@ -22,12 +22,12 @@ export default function EmployeeDetails ({
       <Divider />
       <br />
       <div style={{ display: 'flex' }}>
-        <Button variant='contained' onClick={handleCancel}>
+        <Button variant='contained' color='secondary' onClick={handleCancel}>
           Cancel
         </Button>
         &nbsp;&nbsp;&nbsp;&nbsp;
         <Button variant='contained' color='primary' onClick={handleEdit}>
-          Edit
+          Edit Details
         </Button>
       </div>
     </>

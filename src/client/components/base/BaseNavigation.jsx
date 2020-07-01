@@ -134,15 +134,19 @@ export default function BaseNavigation ({ location }: Props) {
         <List>
           <ListItem button key='Home' component='a' href='/'>
             <ListItemIcon>
-              <Home />
+              <Home color='secondary' />
             </ListItemIcon>
-            <ListItemText primary='Home' />
+            <ListItemText
+              primary={<strong style={{ color: '#3f51b5' }}>Home</strong>}
+            />
           </ListItem>
           <ListItem button key='Employees' component='a' href='/employees'>
             <ListItemIcon>
-              <Person />
+              <Person color='secondary' />
             </ListItemIcon>
-            <ListItemText primary='Employees' />
+            <ListItemText
+              primary={<strong style={{ color: '#3f51b5' }}>Employees</strong>}
+            />
           </ListItem>
         </List>
       </Drawer>

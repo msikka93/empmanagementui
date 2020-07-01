@@ -14,11 +14,11 @@ export default function ViewFormatter ({ value, handleClick, type }: Props) {
   return (
     <IconButton onClick={() => handleClick(value)}>
       {type === 'view' ? (
-        <Visibility />
+        <Visibility color='primary' />
       ) : type === 'delete' ? (
-        <Delete />
+        <Delete color='secondary' />
       ) : (
-        <Edit />
+        <Edit style={{ color: 'green' }} />
       )}
     </IconButton>
   )

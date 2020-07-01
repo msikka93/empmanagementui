@@ -35,6 +35,7 @@ export default function EmployeeCreateForm ({
         id='btn-cancel-emp-create'
         variant='contained'
         onClick={handleCancel}
+        color='secondary'
       >
         Cancel
       </Button>
